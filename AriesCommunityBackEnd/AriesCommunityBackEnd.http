@@ -1,0 +1,6 @@
+@AriesCommunityBackEnd_HostAddress = http://localhost:5173
+
+GET {{AriesCommunityBackEnd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
