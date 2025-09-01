@@ -5,6 +5,12 @@ import "./index.css";
 
 import Dashboard from "./layout/Dashboard";
 import MisTramites from "./pages/MisTramites";
+
+import MisEntidades from "./pages/MisEntidades";
+import MisDocumentos from "./pages/MisDocumentos";
+import CompletarPerfil from "./pages/CompletarPerfil";
+
+
 import SolicitarTramite from "./pages/SolicitarTramite";
 import Mensajes from "./pages/Mensajes";
 import App from "./App"; 
@@ -26,8 +32,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             {/* 👇 Ruta "Inicio" */}
             <Route index element={<div />} />
             
+
             <Route path="mis-tramites" element={<MisTramites />} />
+            <Route path="mis-entidades" element={<MisEntidades />} />
             <Route path="solicitar-tramite" element={<SolicitarTramite />} />
+            <Route path="mis-documentos" element={<MisDocumentos />} />
+            <Route path="completar-perfil" element={<CompletarPerfil />} />
+            
+
             <Route path="mensajes" element={<Mensajes />} />
           </Route>
         </Routes>

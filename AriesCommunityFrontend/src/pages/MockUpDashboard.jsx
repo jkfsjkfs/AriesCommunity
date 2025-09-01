@@ -95,7 +95,7 @@ export default function MockUpDashboard() {
           <p className="text-sm text-gray-500">Mis Entidades</p>
           <p className="text-2xl font-bold text-gray-800">12
           <a href="/dashboard/mis-entidades"
-                target="_blank"
+                
                 rel="noopener noreferrer"
             className="ml-5 px-3 py-1 bg-green-500 text-white rounded hover:bg-gren-600 text-sm"
         > Ver</a></p>

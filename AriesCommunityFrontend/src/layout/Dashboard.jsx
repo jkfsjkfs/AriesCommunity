@@ -8,7 +8,7 @@ import {
   DocumentCheckIcon,
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
-import Logo from "../assets/Logo_Blanco.png";
+import Logo from "../assets/Logo.png";
 import MockUpDashboard from "../pages/MockUpDashboard";
 
 
@@ -18,10 +18,14 @@ export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
+  const confirmar = window.confirm("¿Seguro que deseas cerrar sesión?");
+  if (!confirmar) return;
+
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("user");
+  navigate("/login");
+};
+
 
   const menuItems = [
     {
@@ -30,38 +34,45 @@ export default function Dashboard() {
       icon: HomeIcon,
     },
     {
+      name: "Solicitar Trámite",
+      path: "/dashboard/solicitar-tramite",
+      icon: PencilSquareIcon,
+    },    
+{
       name: "Mis Trámites",
       path: "/dashboard/mis-tramites",
       icon: ClipboardDocumentListIcon,
     },
     {
-      name: "Solicitar Trámite",
-      path: "/dashboard/solicitar-tramite",
-      icon: PencilSquareIcon,
-    },
-    {
-      name: "Mensajes",
+      name: "Mis Mensajes",
       path: "/dashboard/mensajes",
       icon: ChatBubbleOvalLeftEllipsisIcon,
+    },    
+    {
+      name: "Mis Documentos",
+      path: "/dashboard/mis-documentos",
+      icon: DocumentCheckIcon, 
     },
+
+    {
+      name: "Mis Entidades",
+      path: "/dashboard/mis-entidades",
+      icon: UserGroupIcon,
+    },
+
+    
   ];
 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-blue-950 text-white flex flex-col shadow-lg">
-        <div className="flex items-center gap-3 px-6 py-4 mt-3 mb-3 text-xl font-bold border-b border-blue-900">
+        <div className="flex items-center gap-6 px-6">
           <img
             src={Logo}
             alt="Logo Aries Community"
-            className="w-12 h-12 object-contain"
+            className="w-full h-32 object-contain"
           />
-          <div>
-            <h2 className="text-gray-200 font-bold leading-tight">
-              COMUNIDARIES
-            </h2>
-            <h5 className="text-xs text-gray-500">Sistemas Aries</h5>
-          </div>
         </div>
 
         <nav className="flex-1 p-4">
@@ -94,8 +105,7 @@ export default function Dashboard() {
         {/* Header */}
         <header className="h-14 bg-white shadow flex items-center justify-between px-6">
           <h1 className="font-semibold text-gray-800">
-            <span className="text-xl font-bold">Aries Community</span> - Panel
-            de Usuario
+            Panel de Usuario
           </h1>
           <div className="flex items-center gap-4">
             <input
