@@ -13,7 +13,7 @@ export default function Login() {
 
     
     //window.location.href = "/dashboard";
-    window.location.href = "/dashboard/completar-perfil";
+    window.location.href = "/completar-perfil";
 
   };
 

@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           {/* Landing inicial */}
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
-          
+          <Route path="completar-perfil" element={<CompletarPerfil />} />
           {/* Dashboard con rutas hijas */}
           <Route path="/dashboard" element={<Dashboard />}>
             {/* 👇 Ruta "Inicio" */}
@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="mis-entidades" element={<MisEntidades />} />
             <Route path="solicitar-tramite" element={<SolicitarTramite />} />
             <Route path="mis-documentos" element={<MisDocumentos />} />
-            <Route path="completar-perfil" element={<CompletarPerfil />} />
+
             
 
             <Route path="mensajes" element={<Mensajes />} />
