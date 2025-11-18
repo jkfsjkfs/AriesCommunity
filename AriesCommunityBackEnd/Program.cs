@@ -13,9 +13,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173") // Vite dev server
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+            policy.WithOrigins(
+                    "http://localhost:5173", // Desarrollo local
+                    "https://yellow-field-08d08a810.3.azurestaticapps.net" // Producción Azure
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials(); // Si usas cookies o auth basada en tokens
         });
 });
 
