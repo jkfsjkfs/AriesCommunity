@@ -3,11 +3,11 @@ import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
 
 export default function MisEntidades() {
   const [entidades] = useState([
-    { nombre: "Chigorodó", registrados: 12, resueltos: 8 },
-    { nombre: "Mutatá", registrados: 7, resueltos: 5 },
-    { nombre: "Carepa", registrados: 15, resueltos: 14 },
-    { nombre: "Dabeiba", registrados: 9, resueltos: 4 },
-    { nombre: "ESP Dabeiba", registrados: 6, resueltos: 2 },
+    { nombre: "Chigorodó", registrados: 10, resueltos: 8 },
+    { nombre: "Mutatá", registrados: 6, resueltos: 5 },
+    { nombre: "Carepa", registrados: 7, resueltos: 7 },
+    { nombre: "Dabeiba", registrados: 5, resueltos: 3 },
+    { nombre: "ESP Dabeiba", registrados: 4, resueltos: 3 },
   ]);
 
   return (
@@ -24,10 +24,10 @@ export default function MisEntidades() {
             key={idx}
             className="flex items-center justify-between bg-blue-50 border border-blue-200 p-4 rounded-lg shadow-sm"
           >
-            {/* Nombre de la entidad */}
+            {/* Nombre */}
             <span className="font-medium text-blue-800">{entidad.nombre}</span>
 
-            {/* Resumen de trámites */}
+            {/* Resumen */}
             <div className="text-right">
               <p className="text-sm text-gray-700">
                 Registrados:{" "}

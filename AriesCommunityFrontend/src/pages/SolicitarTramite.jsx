@@ -6,7 +6,7 @@ export default function SolicitarTramite() {
   const [selectedTramite, setSelectedTramite] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  // Entidades (municipios + ESP)
+  // ENTIDADES OFICIALES - coherentes con el sistema
   const entidades = [
     "Chigorodó",
     "Mutatá",
@@ -15,16 +15,13 @@ export default function SolicitarTramite() {
     "ESP Dabeiba",
   ];
 
-  // Trámites definidos (ejemplo extendido)
+  // TRÁMITES OFICIALES DEL CATALOGO REAL
   const tramites = [
-    "Certificado de Paz y Salvo",
-    "Licencia de Construcción",
-    "Registro de Industria y Comercio",
-    "Solicitud de Documento",
-    "Licencia de Transporte",
-    "Permiso de Eventos Públicos",
-    "Certificado de Residencia",
-    "Autorización de Uso de Suelo",
+    "Paz y Salvo Tributario",
+    "Certificados de Retefuente",
+    "Facturas",
+    "Cambio de Datos",
+    "Mensajería",
   ];
 
   const addEntity = (e) => {
@@ -41,10 +38,14 @@ export default function SolicitarTramite() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     alert(
-      `📩 Solicitud enviada\n\nEntidades: ${
+      `📩 Solicitud enviada\n\n` +
+      `Entidades: ${
         selectedEntities.length > 0 ? selectedEntities.join(", ") : "Todas"
-      }\nTrámite: ${selectedTramite}\nMensaje: ${mensaje}`
+      }\n` +
+      `Trámite: ${selectedTramite}\n` +
+      `Mensaje: ${mensaje}`
     );
   };
 
@@ -55,11 +56,12 @@ export default function SolicitarTramite() {
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Entidades */}
+        {/* ENTIDADES */}
         <div>
           <label className="block text-sm font-semibold text-blue-700 mb-2">
             Selecciona Entidades
           </label>
+
           <select
             onChange={addEntity}
             className="w-full border border-blue-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 text-sm"
@@ -71,7 +73,8 @@ export default function SolicitarTramite() {
               </option>
             ))}
           </select>
-          {/* Chips de entidades */}
+
+          {/* Chips */}
           <div className="flex flex-wrap gap-2 mt-3">
             {selectedEntities.map((entidad, idx) => (
               <span
@@ -86,14 +89,15 @@ export default function SolicitarTramite() {
               </span>
             ))}
           </div>
+
           {selectedEntities.length === 0 && (
-            <p className="text-xl text-gray-500 mt-2">
-              * Si no seleccionas, se solicita en todas tus entidades.
+            <p className="text-sm text-gray-500 mt-2 italic">
+              * Si no seleccionas entidades, la solicitud se enviará a todas las entidades.
             </p>
           )}
         </div>
 
-        {/* Trámite */}
+        {/* TRÁMITE */}
         <div>
           <label className="block text-sm font-semibold text-blue-700 mb-2">
             Selecciona un Trámite
@@ -113,7 +117,7 @@ export default function SolicitarTramite() {
           </select>
         </div>
 
-        {/* Mensaje */}
+        {/* MENSAJE */}
         <div>
           <label className="block text-sm font-semibold text-blue-700 mb-2">
             Mensaje
@@ -128,7 +132,7 @@ export default function SolicitarTramite() {
           />
         </div>
 
-        {/* Botón */}
+        {/* BOTÓN */}
         <div className="flex justify-end">
           <button
             type="submit"
