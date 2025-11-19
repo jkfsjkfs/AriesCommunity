@@ -50,6 +50,16 @@
     "Descripcion": "Bandeja de mensajes y notificaciones relacionadas con tr\u00E1mites"
   },
   {
+    "Id": 11,
+    "Nombre": "Permiso de Ocupaci\u00F3n de Espacio P\u00FAblico",
+    "Descripcion": "Solicitud para uso temporal o permanente de espacio p\u00FAblico"
+  },
+  {
+    "Id": 12,
+    "Nombre": "Registro de Contratos",
+    "Descripcion": "Inscripci\u00F3n de contratos ante la entidad municipal"
+  },
+  {
     "Id": 13,
     "Nombre": "Solicitudes de Copias de Documentos",
     "Descripcion": "Obtenci\u00F3n de copias aut\u00E9nticas de documentos en archivo municipal"
