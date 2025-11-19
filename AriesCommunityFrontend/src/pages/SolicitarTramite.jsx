@@ -1,21 +1,14 @@
 import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { emitirTramiteNuevo } from "../utils/eventBus";
 
 export default function SolicitarTramite() {
   const [selectedEntities, setSelectedEntities] = useState([]);
   const [selectedTramite, setSelectedTramite] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  // ENTIDADES OFICIALES - coherentes con el sistema
-  const entidades = [
-    "Chigorodó",
-    "Mutatá",
-    "Carepa",
-    "Dabeiba",
-    "ESP Dabeiba",
-  ];
+  const entidades = ["Chigorodó", "Mutatá", "Carepa", "Dabeiba", "ESP Dabeiba"];
 
-  // TRÁMITES OFICIALES DEL CATALOGO REAL
   const tramites = [
     "Paz y Salvo Tributario",
     "Certificados de Retefuente",
@@ -29,7 +22,7 @@ export default function SolicitarTramite() {
     if (value && !selectedEntities.includes(value)) {
       setSelectedEntities([...selectedEntities, value]);
     }
-    e.target.value = ""; // reset
+    e.target.value = "";
   };
 
   const removeEntity = (entity) => {
@@ -39,14 +32,16 @@ export default function SolicitarTramite() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert(
-      `📩 Solicitud enviada\n\n` +
-      `Entidades: ${
-        selectedEntities.length > 0 ? selectedEntities.join(", ") : "Todas"
-      }\n` +
-      `Trámite: ${selectedTramite}\n` +
-      `Mensaje: ${mensaje}`
-    );
+    const nuevo = {
+      id: Date.now(),
+      nombre: selectedTramite,
+      fecha: new Date().toISOString(),
+      entidad: selectedEntities[0] || "Todas tus entidades",
+    };
+
+    emitirTramiteNuevo(nuevo);
+
+    alert("✔️ Solicitud enviada correctamente\n\nEl trámite fue agregado a 'Mis Trámites'.");
   };
 
   return (
@@ -74,7 +69,6 @@ export default function SolicitarTramite() {
             ))}
           </select>
 
-          {/* Chips */}
           <div className="flex flex-wrap gap-2 mt-3">
             {selectedEntities.map((entidad, idx) => (
               <span

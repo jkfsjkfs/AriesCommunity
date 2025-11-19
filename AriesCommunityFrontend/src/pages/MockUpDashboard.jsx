@@ -8,6 +8,7 @@ import {
   InboxArrowDownIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import {
   BarChart,
@@ -20,28 +21,52 @@ import {
 } from "recharts";
 
 export default function MockUpDashboard() {
-  
-  // Datos hardcodeados y consistentes
-  const tramitesRealizados = 32;
-  const respuestasRecibidas = 26;
-  const tramitesPendientes = 6;
+  // === ESTADOS (ahora dinámicos) ===
+  const [tramitesRealizados, setTramitesRealizados] = useState(32);
+  const [respuestasRecibidas] = useState(26);
+  const [tramitesPendientes] = useState(6);
 
-  const mensajesTotal = 18;
-  const mensajesLeidos = 12;
-  const mensajesNoLeidos = 6;
+  const [mensajesTotal] = useState(18);
+  const [mensajesLeidos] = useState(12);
+  const [mensajesNoLeidos] = useState(6);
 
-  const entidadesVinculadas = 7;
+  const [entidadesVinculadas] = useState(7);
 
   const ultimoAcceso = "27/08/2025 - 10:45 AM";
 
-  const data = [
-    { name: "Marzo", tramites: 4 },
-    { name: "Abril", tramites: 5 },
-    { name: "Mayo", tramites: 3 },
-    { name: "Junio", tramites: 6 },
-    { name: "Julio", tramites: 7 },
-    { name: "Agosto", tramites: 7 },
-  ];
+const [data, setData] = useState([
+  { name: "Junio", tramites: 4 },
+  { name: "Julio", tramites: 5 },
+  { name: "Agosto", tramites: 3 },
+  { name: "Septiembre", tramites: 6 },
+  { name: "Octubre", tramites: 7 },
+  { name: "Noviembre", tramites: 7 }, // <-- el mes que aumentaremos
+]);
+
+
+  // ============================================================
+  //   LISTENER PARA TRÁMITES NUEVOS (desde SolicitarTramite)
+  // ============================================================
+  useEffect(() => {
+    const handler = () => {
+      // 1. Aumentar trámites realizados
+      setTramitesRealizados((prev) => prev + 1);
+
+      // 2. Actualizar gráfica (aumentamos el valor de Agosto)
+      setData((prev) => {
+        const updated = [...prev];
+        updated[5].tramites = updated[5].tramites + 1;
+        return updated;
+      });
+    };
+
+    window.addEventListener("tramite-nuevo", handler);
+    return () => window.removeEventListener("tramite-nuevo", handler);
+  }, []);
+
+  // ============================================================
+  //      UI ORIGINAL — SIN CAMBIAR NADA
+  // ============================================================
 
   return (
     <div>
